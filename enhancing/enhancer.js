@@ -12,7 +12,15 @@ function succeed(item) {
 }
 
 function fail(item) {
-  return { ...item }
+  let durability = item.durability
+  let enhancement = item.enhancement
+  if (enhancement < 15) durability -= 5
+  else {
+    if (enhancement > 16) enhancement--
+    durability -= 10
+  }
+  if (durability < 0) durability = 0
+  return { ...item, durability: durability, enhancement: enhancement }
 }
 
 function repair(item) {

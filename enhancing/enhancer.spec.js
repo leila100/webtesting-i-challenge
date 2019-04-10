@@ -79,4 +79,101 @@ describe("enhancer.js", () => {
       expect(actual).toEqual(expected)
     })
   })
+
+  describe("fail(item)", () => {
+    it("Should decrease the durability by 5, if the item's enhancement is less than 15.", () => {
+      //Arrange
+      const expected = {
+        name: "Item 5",
+        durability: 50,
+        enhancement: 12
+      }
+
+      //Act
+      const actual = enhancer.fail({
+        name: "Item 5",
+        durability: 55,
+        enhancement: 12
+      })
+
+      //assert
+      expect(actual).toEqual(expected)
+    })
+
+    it("Should decrease the durability by 10, if the item's enhancement is 15 or more.", () => {
+      //Arrange
+      const expected = {
+        name: "Item 6",
+        durability: 2,
+        enhancement: 16
+      }
+
+      //Act
+      const actual = enhancer.fail({
+        name: "Item 6",
+        durability: 12,
+        enhancement: 16
+      })
+
+      //assert
+      expect(actual).toEqual(expected)
+    })
+
+    it("Should decrease the enhancement by 1, if the item's enhancement is more than 16.", () => {
+      //Arrange
+      const expected = {
+        name: "Item 7",
+        durability: 2,
+        enhancement: 17
+      }
+
+      //Act
+      const actual = enhancer.fail({
+        name: "Item 7",
+        durability: 12,
+        enhancement: 18
+      })
+
+      //assert
+      expect(actual).toEqual(expected)
+    })
+
+    it("Should set durability to 0, if decreasing with make durability negative", () => {
+      //Arrange
+      const expected = {
+        name: "Item 8",
+        durability: 0,
+        enhancement: 15
+      }
+
+      //Act
+      const actual = enhancer.fail({
+        name: "Item 8",
+        durability: 8,
+        enhancement: 15
+      })
+
+      //assert
+      expect(actual).toEqual(expected)
+    })
+
+    it("Should set durability to 0, if decreasing with make durability negative", () => {
+      //Arrange
+      const expected = {
+        name: "Item 9",
+        durability: 0,
+        enhancement: 8
+      }
+
+      //Act
+      const actual = enhancer.fail({
+        name: "Item 9",
+        durability: 4,
+        enhancement: 8
+      })
+
+      //assert
+      expect(actual).toEqual(expected)
+    })
+  })
 })
