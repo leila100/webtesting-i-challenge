@@ -39,4 +39,44 @@ describe("enhancer.js", () => {
       expect(actual).toEqual(expected)
     })
   })
+
+  describe("succeed(item", () => {
+    it("enhancement should be incremented by 1. Item's other properties unchanged", () => {
+      //Arrange
+      const expected = {
+        name: "Item 3",
+        durability: 50,
+        enhancement: 13
+      }
+
+      //Act
+      const actual = enhancer.succeed({
+        name: "Item 3",
+        durability: 50,
+        enhancement: 12
+      })
+
+      //assert
+      expect(actual).toEqual(expected)
+    })
+
+    it("enhancement should be incremented by 1, only if less than 20. Item's other properties unchanged", () => {
+      //Arrange
+      const expected = {
+        name: "Item 4",
+        durability: 30,
+        enhancement: 20
+      }
+
+      //Act
+      const actual = enhancer.succeed({
+        name: "Item 4",
+        durability: 30,
+        enhancement: 20
+      })
+
+      //assert
+      expect(actual).toEqual(expected)
+    })
+  })
 })

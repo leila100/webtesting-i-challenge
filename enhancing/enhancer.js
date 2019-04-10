@@ -6,7 +6,9 @@ module.exports = {
 }
 
 function succeed(item) {
-  return { ...item }
+  let enhancement = item.enhancement
+  if (enhancement < 20) enhancement++
+  return { ...item, enhancement: enhancement }
 }
 
 function fail(item) {
