@@ -176,4 +176,44 @@ describe("enhancer.js", () => {
       expect(actual).toEqual(expected)
     })
   })
+
+  describe("get(item)", () => {
+    it("Should not modify name if enhancement is 0", () => {
+      //Arrange
+      const expected = {
+        name: "Item 10",
+        durability: 55,
+        enhancement: 0
+      }
+
+      //Act
+      const actual = enhancer.get({
+        name: "Item 10",
+        durability: 55,
+        enhancement: 0
+      })
+
+      //assert
+      expect(actual).toEqual(expected)
+    })
+
+    it("Should not modify name if enhancement is 0", () => {
+      //Arrange
+      const expected = {
+        name: "[+10] Item 11",
+        durability: 55,
+        enhancement: 10
+      }
+
+      //Act
+      const actual = enhancer.get({
+        name: "Item 11",
+        durability: 55,
+        enhancement: 10
+      })
+
+      //assert
+      expect(actual).toEqual(expected)
+    })
+  })
 })
